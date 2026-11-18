@@ -1,11 +1,6 @@
 ---
 deployment:
   tasks:
-    - /bin/cp -Rf dist/* /home1/uejnbpte/public_html/
-    - /bin/cp -f dist/.htaccess /home1/uejnbpte/public_html/.htaccess
-    - /bin/mkdir -p /home1/uejnbpte/createandcare.eu
-    - /bin/cp -Rf dist/* /home1/uejnbpte/createandcare.eu/
-    - /bin/cp -f dist/.htaccess /home1/uejnbpte/createandcare.eu/.htaccess
-    - /bin/mkdir -p /home1/uejnbpte/public_html/createandcare.eu
-    - /bin/cp -Rf dist/* /home1/uejnbpte/public_html/createandcare.eu/
-    - /bin/cp -f dist/.htaccess /home1/uejnbpte/public_html/createandcare.eu/.htaccess
+    - /bin/cp -Rf /home1/uejnbpte/createandcare/dist/. /home1/uejnbpte/public_html/
+    - /bin/chmod -R a+rX /home1/uejnbpte/public_html/
+    - for d in /home1/uejnbpte/createandcare.eu /home1/uejnbpte/www.createandcare.eu /home1/uejnbpte/public_html/createandcare.eu /home1/uejnbpte/public_html/createandcare /home1/uejnbpte/domains/createandcare.eu/public_html; do if [ -d "$d" ]; then /bin/cp -Rf /home1/uejnbpte/createandcare/dist/. "$d/"; /bin/chmod -R a+rX "$d/"; fi; done
