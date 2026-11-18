@@ -1,5 +1,11 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=$HOME/public_html/
-    - /bin/cp -Rf dist/. $DEPLOYPATH
+    - /bin/cp -Rf dist/* /home1/uejnbpte/public_html/
+    - /bin/cp -f dist/.htaccess /home1/uejnbpte/public_html/.htaccess
+    - /bin/mkdir -p /home1/uejnbpte/createandcare.eu
+    - /bin/cp -Rf dist/* /home1/uejnbpte/createandcare.eu/
+    - /bin/cp -f dist/.htaccess /home1/uejnbpte/createandcare.eu/.htaccess
+    - /bin/mkdir -p /home1/uejnbpte/public_html/createandcare.eu
+    - /bin/cp -Rf dist/* /home1/uejnbpte/public_html/createandcare.eu/
+    - /bin/cp -f dist/.htaccess /home1/uejnbpte/public_html/createandcare.eu/.htaccess
