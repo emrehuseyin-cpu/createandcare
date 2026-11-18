@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+---
+
+<BaseLayout
+  title="Accessibility Statement"
+  description="Accessibility commitment and WCAG AA features of the CREATE & CARE website."
+>
+  <section class="page-hero band-sky">
+    <div class="container page-hero-inner">
+      <Stamp text="WCAG 2.1 AA · KEYBOARD & SCREEN-READER FRIENDLY" variant="brick" rotate={-1} />
+      <h1>Accessibility Statement</h1>
+      <p class="lead">
+        We built `createandcare.eu` so adults of all backgrounds and abilities can read, navigate and take part easily.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-band band-paper">
+    <div class="container">
+      <div class="legal-card prose">
+        <h2>How We Designed for Accessibility</h2>
+        <ul>
+          <li><strong>High-contrast Pastel Retro palette:</strong> All text pairings pass WCAG 2.1 AA contrast requirements (at least 4.5:1 for body copy, with primary `--plum` text exceeding 7.8:1 across all pastel backgrounds).</li>
+          <li><strong>Full keyboard navigation:</strong> Every interactive element is reachable via `Tab`, features a clear `3px solid` brick-red focus outline, and includes a “Skip to main content” link.</li>
+          <li><strong>Respects reduced motion:</strong> Visitors with `prefers-reduced-motion: reduce` enabled experience no transitions or animated movement.</li>
+          <li><strong>Works without JavaScript:</strong> If JavaScript is unavailable, the mobile navigation and all three “Who are you?” audience panels remain visible and usable.</li>
+          <li><strong>Multilingual typography:</strong> Our self-hosted fonts include full Latin Extended support for German, Portuguese and Turkish characters.</li>
+        </ul>
+
+        <h2>Formal Compliance &amp; Feedback Contact</h2>
+        <p><code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V.]</code></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-card {
+    background-color: var(--paper);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    box-shadow: var(--shadow-hard);
+  }
+</style>

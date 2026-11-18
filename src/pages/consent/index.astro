@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+---
+
+<BaseLayout
+  title="Photo & Artwork Consent Policy"
+  description="How CREATE & CARE protects workshop participants' privacy and enforces written photo and artwork consent before publishing."
+>
+  <section class="page-hero band-rose">
+    <div class="container page-hero-inner">
+      <Stamp text="PARTICIPANT DIGNITY & WRITTEN CONSENT" variant="brick" rotate={-1} />
+      <h1>Photo &amp; Artwork Consent Policy</h1>
+      <p class="lead">
+        Taking part in a CREATE &amp; CARE workshop never requires you to appear in a photograph or publish your artwork online.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-band band-paper">
+    <div class="container">
+      <div class="legal-card prose">
+        <h2>Our Golden Rule for Workshop Photos</h2>
+        <p>
+          We only publish photographs showing identifiable people—or personal artworks created during workshops—when the participant has signed a clear, voluntary written consent form. Taking part in any workshop, online hub or local exhibition is completely independent of photo consent.
+        </p>
+
+        <h2>Technical Safeguard on This Website</h2>
+        <p>
+          Our website build pipeline automatically checks every news post and event before publishing. If an editor attaches an image file without setting `consent: true` in the article metadata, the build fails and the photo cannot be deployed to `createandcare.eu`.
+        </p>
+
+        <h2>Withdrawing Consent &amp; Removal Requests</h2>
+        <p>
+          Participants can withdraw their consent for a photograph or artwork at any time without giving a reason. Upon request, we remove the image immediately from this website, social media channels and the Artsteps VR gallery.
+        </p>
+        <p><code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V.]</code></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-card {
+    background-color: var(--paper);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    box-shadow: var(--shadow-hard);
+  }
+</style>

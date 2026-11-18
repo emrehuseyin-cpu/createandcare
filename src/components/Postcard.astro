@@ -1,0 +1,73 @@
+---
+interface Props {
+  stamp?: string;
+  rotate?: number;
+  bg?: 'paper' | 'butter' | 'rose' | 'peach' | 'mint' | 'sky' | 'lilac';
+}
+
+const { stamp, rotate = -0.8, bg = 'paper' } = Astro.props;
+---
+
+<article
+  class:list={['postcard', `postcard--${bg}`]}
+  style={`--pc-rot: ${rotate}deg;`}
+>
+  {stamp && (
+    <div class="postcard-header">
+      <span class="postcard-datestamp">{stamp}</span>
+    </div>
+  )}
+  <div class="postcard-body">
+    <slot />
+  </div>
+</article>
+
+<style>
+  .postcard {
+    background-color: var(--paper);
+    color: var(--plum);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-hard);
+    transform: rotate(var(--pc-rot, 0deg));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .postcard--paper { background-color: var(--paper); }
+  .postcard--butter { background-color: var(--butter); }
+  .postcard--rose { background-color: var(--rose); }
+  .postcard--peach { background-color: var(--peach); }
+  .postcard--mint { background-color: var(--mint); }
+  .postcard--sky { background-color: var(--sky); }
+  .postcard--lilac { background-color: var(--lilac); }
+
+  .postcard-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.75rem;
+  }
+
+  .postcard-datestamp {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border: 2px dashed var(--plum);
+    border-radius: var(--radius-sm);
+    background-color: var(--butter);
+    color: var(--plum);
+    transform: rotate(2deg);
+  }
+
+  .postcard-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

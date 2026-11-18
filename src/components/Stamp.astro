@@ -1,0 +1,56 @@
+---
+interface Props {
+  text: string;
+  variant?: 'brick' | 'dashed';
+  rotate?: number;
+  fill?: 'butter' | 'paper' | 'mint' | 'rose' | 'peach' | 'sky' | 'lilac';
+}
+
+const {
+  text,
+  variant = 'brick',
+  rotate = -2,
+  fill = 'butter',
+} = Astro.props;
+---
+
+<span
+  class:list={['stamp', `stamp--${variant}`, variant === 'dashed' && `stamp-bg--${fill}`]}
+  style={`--stamp-rot: ${rotate}deg;`}
+>
+  {text}
+</span>
+
+<style>
+  .stamp {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-pill);
+    transform: rotate(var(--stamp-rot, -2deg));
+    line-height: 1.2;
+  }
+
+  .stamp--brick {
+    background-color: var(--brick);
+    color: var(--paper);
+    border: 2px solid var(--plum);
+  }
+
+  .stamp--dashed {
+    color: var(--plum);
+    border: 2px dashed var(--plum);
+  }
+
+  .stamp-bg--butter { background-color: var(--butter); }
+  .stamp-bg--paper { background-color: var(--paper); }
+  .stamp-bg--mint { background-color: var(--mint); }
+  .stamp-bg--rose { background-color: var(--rose); }
+  .stamp-bg--peach { background-color: var(--peach); }
+  .stamp-bg--sky { background-color: var(--sky); }
+  .stamp-bg--lilac { background-color: var(--lilac); }
+</style>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy (Datenschutzerklärung)"
+  description="Privacy information for visitors to createandcare.eu: no cookies, no analytics, self-hosted fonts, and click-to-load Artsteps VR gallery."
+>
+  <section class="page-hero band-mint">
+    <div class="container page-hero-inner">
+      <Stamp text="GDPR · NO COOKIES · NO ANALYTICS" variant="brick" rotate={-1} />
+      <h1>Privacy Policy</h1>
+      <p class="lead">
+        How this website handles personal data in accordance with the EU General Data Protection Regulation (GDPR / DSGVO).
+      </p>
+    </div>
+  </section>
+
+  <section class="section-band band-paper">
+    <div class="container">
+      <div class="legal-card prose">
+        <h2>1. Data Controller</h2>
+        <p><strong>Integrational e.V.</strong> (Bonn, Germany)</p>
+        <p><code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V.]</code></p>
+
+        <h2>2. Technical Design of This Website</h2>
+        <ul>
+          <li><strong>No cookies or tracking:</strong> This website sets no cookies and uses no analytics or tracking services.</li>
+          <li><strong>Self-hosted fonts:</strong> All fonts (Caprasimo and Figtree) are served directly from our own web server (`createandcare.eu/fonts/`). Your browser makes no requests to Google Fonts servers.</li>
+          <li><strong>Two-click VR Gallery (Artsteps):</strong> On our <a href="/gallery/">VR gallery page</a>, the external Artsteps iframe is blocked by default and is only loaded if you explicitly click the “Load the 3D gallery” button.</li>
+        </ul>
+
+        <h2>3. Server Log Files &amp; Hosting (HostGator)</h2>
+        <p><code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V.]</code></p>
+
+        <h2>4. Contact via Email &amp; Workshop Registration</h2>
+        <p><code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V.]</code></p>
+
+        <h2>5. Your Rights under GDPR &amp; Supervisory Authority</h2>
+        <p><code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V.]</code></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-card {
+    background-color: var(--paper);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    box-shadow: var(--shadow-hard);
+  }
+</style>

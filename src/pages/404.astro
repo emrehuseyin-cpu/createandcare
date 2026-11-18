@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Stamp from '../components/Stamp.astro';
+import Arches from '../components/Arches.astro';
+---
+
+<BaseLayout
+  title="404 – Page Not Found"
+  description="Sorry, we couldn't find that page on CREATE & CARE."
+>
+  <section class="section-band band-butter not-found-section">
+    <div class="container not-found-inner">
+      <Stamp text="404 · WRONG TURN ON THE ROAD TRIP" variant="brick" rotate={-2} />
+      <h1>This postcard got lost in the post.</h1>
+      <p class="lead">
+        The page you’re looking for doesn’t exist or has moved. You can head back to the front door or jump straight to our workshops and downloads.
+      </p>
+      <div class="not-found-actions">
+        <a href="/" class="btn">Back to Home page</a>
+        <a href="/activities/" class="btn btn-paper">See the 18-month road trip</a>
+        <a href="/downloads/" class="btn btn-paper">Downloads shelf</a>
+      </div>
+      <div class="not-found-art">
+        <Arches variant="banner" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found-section {
+    text-align: center;
+    padding-block: clamp(4rem, 8vw, 6rem);
+  }
+
+  .not-found-inner {
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .not-found-inner h1 {
+    margin-top: 1rem;
+  }
+
+  .not-found-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .not-found-art {
+    width: 100%;
+    max-width: 340px;
+  }
+</style>

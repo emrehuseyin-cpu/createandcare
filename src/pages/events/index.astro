@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+import Postcard from '../../components/Postcard.astro';
+
+const allEvents = await getCollection('events');
+const now = new Date();
+
+const renderedEvents = await Promise.all(
+  allEvents
+    .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf())
+    .map(async (ev) => {
+      const { Content } = await ev.render();
+      const compareDate = ev.data.endDate || ev.data.date;
+      const isPast = compareDate.valueOf() < now.valueOf();
+      return { ev, Content, isPast };
+    })
+);
+
+const upcomingEvents = renderedEvents.filter((item) => !item.isPast);
+const pastEvents = renderedEvents.filter((item) => item.isPast);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title="Events – Workshops, Online Hub, Exhibitions & Conferences"
+  description="Upcoming and past events from CREATE & CARE across Bonn, Madeira, Eskişehir and online."
+>
+  <section class="page-hero band-mint">
+    <div class="container page-hero-inner">
+      <Stamp text="WORKSHOPS · EXHIBITIONS · CONFERENCES" variant="brick" rotate={-1.5} />
+      <h1>Events</h1>
+      <p class="lead">
+        Join a local creative workshop in Bonn, Funchal or Eskişehir, connect at our multicultural online hub, or visit our autumn 2027 community exhibitions.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-band band-paper" aria-labelledby="upcoming-heading">
+    <div class="container">
+      <h2 id="upcoming-heading">Upcoming events</h2>
+      {upcomingEvents.length > 0 ? (
+        <div class="events-list">
+          {upcomingEvents.map(({ ev, Content }) => (
+            <Postcard
+              stamp={`${formatDate(ev.data.date)} · ${ev.data.city}`}
+              rotate={-0.4}
+              bg="butter"
+            >
+              <h3>{ev.data.title}</h3>
+              <p class="lead">{ev.data.summary}</p>
+              <div class="prose event-body">
+                <Content />
+              </div>
+            </Postcard>
+          ))}
+        </div>
+      ) : (
+        <p>No upcoming events listed right now. Check our <a href="/activities/">18-month road trip</a> for all milestone dates.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="section-band band-sky" aria-labelledby="past-heading">
+    <div class="container">
+      <h2 id="past-heading">Past events</h2>
+      {pastEvents.length > 0 ? (
+        <div class="events-list">
+          {pastEvents.map(({ ev, Content }) => (
+            <Postcard
+              stamp={`COMPLETED · ${formatDate(ev.data.date)}`}
+              rotate={0.4}
+            >
+              <h3>{ev.data.title}</h3>
+              <p>{ev.data.summary}</p>
+              <div class="prose event-body">
+                <Content />
+              </div>
+            </Postcard>
+          ))}
+        </div>
+      ) : (
+        <p class="lead">
+          Past local workshops and public events will appear here after they take place. See our <a href="/news/">News logbook</a> for reports on our September 2026 kick-off in Germany and November 2026 educator training week in Madeira.
+        </p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 860px;
+  }
+
+  .event-body {
+    background-color: var(--paper);
+    border: 2px solid var(--plum);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    margin-top: 0.75rem;
+  }
+</style>

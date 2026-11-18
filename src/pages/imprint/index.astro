@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+---
+
+<BaseLayout
+  title="Imprint (Impressum)"
+  description="Legal notice and Impressum for the CREATE & CARE website, coordinated by Integrational e.V. (Bonn, Germany)."
+>
+  <section class="page-hero band-butter">
+    <div class="container page-hero-inner">
+      <Stamp text="LEGAL NOTICE · § 5 DDG" variant="brick" rotate={-1} />
+      <h1>Imprint (Impressum)</h1>
+      <p class="lead">
+        Legal disclosure for the official website of the Erasmus+ KA210-ADU project CREATE &amp; CARE.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-band band-paper">
+    <div class="container">
+      <div class="legal-card prose">
+        <h2>Project Coordinator &amp; Responsible Entity</h2>
+        <p><strong>Integrational e.V.</strong> (Bonn, Germany)</p>
+        <p><code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V.]</code></p>
+
+        <h3>Postal Address</h3>
+        <p><code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V. — STREET, POSTCODE, BONN, GERMANY]</code></p>
+
+        <h3>Represented by the Board (Vertretungsberechtigter Vorstand)</h3>
+        <p><code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V. — AUTHORISED BOARD REPRESENTATIVES]</code></p>
+
+        <h3>Contact</h3>
+        <p>
+          Email: <code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V. — EMAIL]</code><br />
+          Telephone: <code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V. — PHONE]</code>
+        </p>
+
+        <h3>Register Entry (Vereinsregister)</h3>
+        <p>
+          Register court (Registergericht): <code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V. — e.g. Amtsgericht Bonn]</code><br />
+          Registration number (Registernummer): <code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V. — VR NUMBER]</code>
+        </p>
+
+        <h3>Person Responsible for Editorial Content</h3>
+        <p><code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V. — NAME & ADDRESS]</code></p>
+
+        <h3>Project Partners</h3>
+        <ul>
+          <li><strong>Associação Ramifica</strong> — Funchal, Madeira, Portugal (<code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V.]</code>)</li>
+          <li><strong>Modern Gelişim Derneği</strong> — Eskişehir, Türkiye (<code class="placeholder-tag">[TO BE COMPLETED BY INTEGRATIONAL e.V.]</code>)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-card {
+    background-color: var(--paper);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    box-shadow: var(--shadow-hard);
+  }
+</style>

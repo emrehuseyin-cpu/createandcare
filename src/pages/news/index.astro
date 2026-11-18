@@ -1,0 +1,132 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+import Postcard from '../../components/Postcard.astro';
+
+const newsPosts = (await getCollection('news')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const events = (await getCollection('events')).sort(
+  (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
+);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title="News & Events"
+  description="Latest updates, field notes and upcoming events from the CREATE & CARE Erasmus+ adult education partnership in Bonn, Madeira and Eskişehir."
+>
+  <section class="page-hero band-mint">
+    <div class="container page-hero-inner">
+      <Stamp text="PROJECT LOGBOOK · NEWEST FIRST" variant="brick" rotate={-1.5} />
+      <h1>News &amp; events</h1>
+      <p class="lead">
+        Dispatches from our training week, local creative workshops, awareness campaigns and exhibitions in Germany, Portugal and Türkiye.
+      </p>
+      <p>
+        <a href="/events/" class="btn btn-paper">View dedicated Events calendar →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section-band band-paper" aria-labelledby="news-list-heading">
+    <div class="container">
+      <h2 id="news-list-heading">Latest news posts</h2>
+      <div class="grid-2">
+        {newsPosts.map((post, idx) => (
+          <Postcard
+            stamp={`${formatDate(post.data.date)} · ${post.data.city}`}
+            rotate={idx % 2 === 0 ? -0.7 : 0.7}
+          >
+            {post.data.image && (
+              <div class="news-thumb">
+                <Image
+                  src={post.data.image}
+                  alt={post.data.imageAlt || post.data.title}
+                  widths={[400, 720]}
+                  sizes="(max-width: 720px) 100vw, 540px"
+                />
+              </div>
+            )}
+            <h3>
+              <a href={`/news/${post.slug}/`}>{post.data.title}</a>
+            </h3>
+            <p>{post.data.summary}</p>
+            <div class="post-more">
+              <a href={`/news/${post.slug}/`} class="btn btn-butter">Read full post →</a>
+            </div>
+          </Postcard>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band band-butter" aria-labelledby="events-preview-heading">
+    <div class="container">
+      <div class="events-header">
+        <h2 id="events-preview-heading">Upcoming &amp; planned events</h2>
+        <a href="/events/" class="btn">All events</a>
+      </div>
+      <div class="grid-2">
+        {events.map((ev) => (
+          <Postcard
+            stamp={`${formatDate(ev.data.date)} · ${ev.data.city}`}
+            rotate={-0.5}
+          >
+            <h3>{ev.data.title}</h3>
+            <p>{ev.data.summary}</p>
+            <a href="/events/" class="read-link">Event details →</a>
+          </Postcard>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .news-thumb {
+    margin-bottom: 1rem;
+    border: 2px solid var(--plum);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .news-thumb img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .post-more {
+    margin-top: auto;
+    padding-top: 0.75rem;
+  }
+
+  .events-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .events-header h2 {
+    margin-bottom: 0;
+  }
+
+  .read-link {
+    font-weight: 800;
+    margin-top: auto;
+  }
+</style>

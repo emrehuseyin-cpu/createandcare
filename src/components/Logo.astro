@@ -1,0 +1,80 @@
+---
+interface Props {
+  showWordmark?: boolean;
+  size?: number;
+}
+
+const { showWordmark = true, size = 48 } = Astro.props;
+---
+
+<span class="brand-lockup">
+  <svg
+    viewBox="0 0 120 120"
+    width={size}
+    height={size}
+    role="img"
+    aria-label="CREATE & CARE"
+    class="brand-logo"
+  >
+    <circle
+      cx="60"
+      cy="60"
+      r="48"
+      fill="none"
+      stroke="#F28FA6"
+      stroke-width="10"
+      stroke-dasharray="226.2 75.4"
+      transform="rotate(45 60 60)"
+    />
+    <circle
+      cx="60"
+      cy="60"
+      r="36"
+      fill="none"
+      stroke="#F6A35C"
+      stroke-width="10"
+      stroke-dasharray="169.6 56.5"
+      transform="rotate(45 60 60)"
+    />
+    <circle
+      cx="60"
+      cy="60"
+      r="24"
+      fill="none"
+      stroke="#6FC3A0"
+      stroke-width="10"
+      stroke-dasharray="113.1 37.7"
+      transform="rotate(45 60 60)"
+    />
+    <circle cx="66" cy="60" r="9" fill="#3B2A4A" />
+  </svg>
+  {showWordmark && (
+    <span class="brand-wordmark">
+      Create <span class="brand-amp">&amp;</span> Care
+    </span>
+  )}
+</span>
+
+<style>
+  .brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .brand-logo {
+    flex-shrink: 0;
+  }
+
+  .brand-wordmark {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    color: var(--plum);
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .brand-amp {
+    color: var(--brick);
+  }
+</style>

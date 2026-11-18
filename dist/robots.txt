@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://createandcare.eu/sitemap.xml
+Sitemap: https://createandcare.eu/sitemap-index.xml
+

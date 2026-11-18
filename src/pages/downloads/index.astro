@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+import Postcard from '../../components/Postcard.astro';
+
+const downloads = [
+  {
+    category: 'Methods Manual',
+    title: 'CREATE & CARE Methods Manual (Full 4-Chapter Edition)',
+    description:
+      'Our complete guide for adult educators: non-clinical creative workshops using drawing, storytelling, drama and music to support adult mental well-being and social inclusion.',
+    format: 'PDF',
+    language: 'English (with key terms in DE, PT, TR)',
+    status: 'Coming April 2027',
+    bg: 'rose' as const,
+    fileUrl: null,
+  },
+  {
+    category: 'Session Templates',
+    title: 'Workshop Facilitation & Non-Clinical Safety Pack',
+    description:
+      'Printable session planners, warm-up prompts, non-clinical boundary agreements, participant reflection cards and multilingual photo/artwork consent templates.',
+    format: 'PDF & DOCX',
+    language: 'English, German, Portuguese, Turkish',
+    status: 'Coming April 2027',
+    bg: 'mint' as const,
+    fileUrl: null,
+  },
+  {
+    category: 'Campaign Pack #1',
+    title: 'Awareness Campaign 1: Drawing Out Loneliness',
+    description:
+      'Printable community posters, postcard templates and social media graphics inviting adults 25+ to talk openly about social connection.',
+    format: 'ZIP (PDF + PNG)',
+    language: 'EN · DE · PT · TR',
+    status: 'Coming May 2027',
+    bg: 'butter' as const,
+    fileUrl: null,
+  },
+  {
+    category: 'Campaign Pack #2',
+    title: 'Awareness Campaign 2: Every Story Belongs Here',
+    description:
+      'Storytelling prompts and neighbourhood poster kit highlighting newcomer, carer and cross-generational voices.',
+    format: 'ZIP (PDF + PNG)',
+    language: 'EN · DE · PT · TR',
+    status: 'Coming June 2027',
+    bg: 'peach' as const,
+    fileUrl: null,
+  },
+  {
+    category: 'Campaign Pack #3',
+    title: 'Awareness Campaign 3: Step Into Another Shoe',
+    description:
+      'Empathy and anti-stigma campaign materials inspired by our community drama workshops.',
+    format: 'ZIP (PDF + PNG)',
+    language: 'EN · DE · PT · TR',
+    status: 'Coming August 2027',
+    bg: 'sky' as const,
+    fileUrl: null,
+  },
+  {
+    category: 'Campaign Pack #4',
+    title: 'Awareness Campaign 4: Shared Rhythms, Shared Cities',
+    description:
+      'Materials celebrating collective rhythm, music and active participation ahead of our autumn exhibitions.',
+    format: 'ZIP (PDF + PNG)',
+    language: 'EN · DE · PT · TR',
+    status: 'Coming September 2027',
+    bg: 'lilac' as const,
+    fileUrl: null,
+  },
+];
+---
+
+<BaseLayout
+  title="Downloads – Methods Manual, Campaign Packs & Session Templates"
+  description="Download free, open-access adult education materials from CREATE & CARE: our 4-chapter Methods Manual, four awareness campaign packs, and printable session templates."
+>
+  <section class="page-hero band-butter">
+    <div class="container page-hero-inner">
+      <Stamp text="OPEN EDUCATIONAL RESOURCES (CC BY-NC-SA 4.0)" variant="brick" rotate={-1.5} />
+      <h1>Downloads shelf</h1>
+      <p class="lead">
+        Every manual, template and awareness campaign pack produced by CREATE &amp; CARE is published here free of charge. No sign-up wall, no email gate.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-band band-paper" aria-label="Downloadable project publications">
+    <div class="container">
+      <div class="grid-2">
+        {downloads.map((item, idx) => (
+          <Postcard
+            stamp={item.status}
+            rotate={idx % 2 === 0 ? -0.6 : 0.7}
+            bg={item.bg}
+          >
+            <span class="dl-category">{item.category}</span>
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
+            <dl class="dl-meta">
+              <div>
+                <dt>Format:</dt>
+                <dd>{item.format}</dd>
+              </div>
+              <div>
+                <dt>Language:</dt>
+                <dd>{item.language}</dd>
+              </div>
+              <div>
+                <dt>Status:</dt>
+                <dd><strong>{item.status}</strong></dd>
+              </div>
+            </dl>
+            {item.fileUrl ? (
+              <a href={item.fileUrl} class="btn" download>Download file</a>
+            ) : (
+              <span class="dl-pending" aria-disabled="true">
+                File scheduled · {item.status}
+              </span>
+            )}
+          </Postcard>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .dl-category {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .dl-meta {
+    margin: 0.75rem 0 1.25rem 0;
+    background-color: var(--paper);
+    border: 2px solid var(--plum);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    font-size: 0.92rem;
+  }
+
+  .dl-meta div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-block: 0.25rem;
+    border-bottom: 1px dashed var(--plum);
+  }
+
+  .dl-meta div:last-child {
+    border-bottom: none;
+  }
+
+  .dl-meta dt {
+    font-weight: 700;
+  }
+
+  .dl-meta dd {
+    margin: 0;
+    text-align: right;
+  }
+
+  .dl-pending {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.55rem 1.2rem;
+    border-radius: var(--radius-pill);
+    border: 2px dashed var(--plum);
+    background-color: var(--paper);
+    font-weight: 800;
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-top: auto;
+  }
+</style>

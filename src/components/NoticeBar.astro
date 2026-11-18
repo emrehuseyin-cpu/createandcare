@@ -1,0 +1,61 @@
+---
+import { getEntry } from 'astro:content';
+
+const noticeEntry = await getEntry('site', 'notice');
+const notice = noticeEntry?.data;
+---
+
+{notice && notice.active && (
+  <div class="notice-bar" role="region" aria-label="Project announcement">
+    <div class="container notice-inner">
+      <p class="notice-text">
+        <span>{notice.text}</span>
+        {notice.linkText && notice.linkHref && (
+          <>
+            <span class="notice-sep" aria-hidden="true"> · </span>
+            <a href={notice.linkHref} class="notice-link">{notice.linkText}</a>
+          </>
+        )}
+      </p>
+    </div>
+  </div>
+)}
+
+<style>
+  .notice-bar {
+    background-color: var(--plum);
+    color: var(--butter);
+    border-bottom: 2px solid var(--plum);
+    padding-block: 0.55rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .notice-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .notice-text {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .notice-sep {
+    margin-inline: 0.25rem;
+  }
+
+  .notice-link {
+    color: var(--butter);
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .notice-link:hover {
+    color: var(--rose);
+  }
+</style>

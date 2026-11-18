@@ -1,0 +1,242 @@
+---
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Left: Mandatory EU visibility -->
+      <div class="footer-eu">
+        <div class="eu-emblem-slot" aria-label="Official European Union emblem placeholder">
+          <span class="eu-emblem-label">[OFFICIAL EU EMBLEM]</span>
+          <span class="eu-emblem-sub">Co-funded by the European Union (see public/eu/README.md)</span>
+        </div>
+
+        <p class="eu-project-line">
+          <strong>CREATE &amp; CARE – Creative Adult Education for Mental Well-Being and Inclusion</strong> · Erasmus+ KA210-ADU · Project number: <code class="placeholder-tag">[PROJECT NUMBER]</code>
+        </p>
+
+        <p class="eu-disclaimer">
+          Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the National Agency (NA beim BIBB). Neither the European Union nor the granting authority can be held responsible for them.
+        </p>
+      </div>
+
+      <!-- Right: Partners, social slots & EPALE -->
+      <div class="footer-partners">
+        <h2 class="footer-heading">Project Partnership</h2>
+        <ul class="partner-slots">
+          <li class="partner-slot">
+            <span class="logo-placeholder">[LOGO]</span>
+            <div>
+              <strong>Integrational e.V.</strong>
+              <span class="partner-place">Bonn, Germany (Coordinator)</span>
+            </div>
+          </li>
+          <li class="partner-slot">
+            <span class="logo-placeholder">[LOGO]</span>
+            <div>
+              <strong>Associação Ramifica</strong>
+              <span class="partner-place">Funchal, Madeira, Portugal</span>
+            </div>
+          </li>
+          <li class="partner-slot">
+            <span class="logo-placeholder">[LOGO]</span>
+            <div>
+              <strong>Modern Gelişim Derneği</strong>
+              <span class="partner-place">Eskişehir, Türkiye</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="social-row" aria-label="Social media and EPALE links">
+          <span class="social-pill"><code class="placeholder-tag">[INSTAGRAM]</code></span>
+          <span class="social-pill"><code class="placeholder-tag">[FACEBOOK]</code></span>
+          <a
+            href="https://epale.ec.europa.eu/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-pill social-link"
+          >
+            EPALE (Adult Learning in Europe) ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <nav aria-label="Legal and compliance navigation">
+        <ul class="legal-links">
+          <li><a href="/imprint/">Imprint (Impressum)</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/accessibility/">Accessibility</a></li>
+          <li><a href="/consent/">Photo consent</a></li>
+          <li><a href="/events/">Events</a></li>
+        </ul>
+      </nav>
+      <p class="copyright-note">
+        No cookies · No analytics · Self-hosted fonts · Maintained 2026–2033
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--paper);
+    color: var(--plum);
+    border-top: var(--border-thick);
+    padding-block: 3rem 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px dashed var(--plum);
+  }
+
+  @media (max-width: 860px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .eu-emblem-slot {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0.9rem 1.25rem;
+    border: 2.5px dashed var(--plum);
+    border-radius: var(--radius-sm);
+    background-color: var(--butter);
+    margin-bottom: 1rem;
+  }
+
+  .eu-emblem-label {
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+  }
+
+  .eu-emblem-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .eu-project-line {
+    font-size: 0.98rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .eu-disclaimer {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+
+  .footer-heading {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .partner-slots {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .partner-slot {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    background-color: var(--paper);
+    border: 2px solid var(--plum);
+    border-radius: var(--radius-sm);
+    padding: 0.55rem 0.85rem;
+  }
+
+  .logo-placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    height: 38px;
+    padding-inline: 0.4rem;
+    border: 2px dashed var(--plum);
+    border-radius: 6px;
+    background-color: var(--butter);
+    font-family: ui-monospace, monospace;
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  .partner-place {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .social-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .social-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--plum);
+    background-color: var(--mint);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .social-link {
+    text-decoration: none;
+    background-color: var(--sky);
+  }
+
+  .social-link:hover {
+    box-shadow: 3px 3px 0 var(--plum);
+    color: var(--plum);
+  }
+
+  .footer-bottom {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .legal-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  .legal-links a {
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .copyright-note {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+</style>

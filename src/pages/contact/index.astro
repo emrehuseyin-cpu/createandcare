@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+import Postcard from '../../components/Postcard.astro';
+---
+
+<BaseLayout
+  title="Contact the Partners & Support Services Notice"
+  description="Get in touch with the three CREATE & CARE partner NGOs in Bonn (Germany), Funchal/Madeira (Portugal) and Eskişehir (Türkiye), or find local mental health support services."
+>
+  <section class="page-hero band-lilac">
+    <div class="container page-hero-inner">
+      <Stamp text="BONN · MADEIRA · ESKİŞEHİR" variant="brick" rotate={-1.5} />
+      <h1>Contact our three partners</h1>
+      <p class="lead">
+        Want to join a local workshop, refer adult learners, request a printed copy of the Methods Manual, or co-host an exhibition? Write to your closest partner below.
+      </p>
+    </div>
+  </section>
+
+  <!-- Three Partner Contacts -->
+  <section class="section-band band-paper" aria-labelledby="partners-contact-heading">
+    <div class="container">
+      <h2 id="partners-contact-heading">Partner contact details</h2>
+      <div class="grid-3">
+        <Postcard stamp="COORDINATOR · GERMANY" rotate={-0.8} bg="rose">
+          <h3>Integrational e.V.</h3>
+          <p><strong>City:</strong> Bonn, Germany</p>
+          <dl class="contact-list">
+            <div>
+              <dt>Contact person:</dt>
+              <dd><code class="placeholder-tag">[CONTACT NAME — BONN]</code></dd>
+            </div>
+            <div>
+              <dt>Email:</dt>
+              <dd><a href="mailto:[CITY EMAIL]"><code class="placeholder-tag">[CITY EMAIL]</code></a></dd>
+            </div>
+            <div>
+              <dt>Address:</dt>
+              <dd><code class="placeholder-tag">[POSTAL ADDRESS — INTEGRATIONAL e.V.]</code></dd>
+            </div>
+            <div>
+              <dt>Phone:</dt>
+              <dd><code class="placeholder-tag">[PHONE — BONN]</code></dd>
+            </div>
+          </dl>
+          <a href="mailto:[CITY EMAIL]?subject=CREATE%20%26%20CARE%20Enquiry%20(Bonn)" class="btn">
+            Email Bonn team
+          </a>
+        </Postcard>
+
+        <Postcard stamp="PARTNER · PORTUGAL" rotate={0.8} bg="peach">
+          <h3>Associação Ramifica</h3>
+          <p><strong>City:</strong> Funchal, Madeira, Portugal</p>
+          <dl class="contact-list">
+            <div>
+              <dt>Contact person:</dt>
+              <dd><code class="placeholder-tag">[CONTACT NAME — MADEIRA]</code></dd>
+            </div>
+            <div>
+              <dt>Email:</dt>
+              <dd><a href="mailto:[CITY EMAIL]"><code class="placeholder-tag">[CITY EMAIL]</code></a></dd>
+            </div>
+            <div>
+              <dt>Address:</dt>
+              <dd><code class="placeholder-tag">[POSTAL ADDRESS — ASSOCIAÇÃO RAMIFICA]</code></dd>
+            </div>
+            <div>
+              <dt>Phone:</dt>
+              <dd><code class="placeholder-tag">[PHONE — MADEIRA]</code></dd>
+            </div>
+          </dl>
+          <a href="mailto:[CITY EMAIL]?subject=CREATE%20%26%20CARE%20Enquiry%20(Madeira)" class="btn">
+            Email Madeira team
+          </a>
+        </Postcard>
+
+        <Postcard stamp="PARTNER · TÜRKİYE" rotate={-0.7} bg="mint">
+          <h3>Modern Gelişim Derneği</h3>
+          <p><strong>City:</strong> Eskişehir, Türkiye</p>
+          <dl class="contact-list">
+            <div>
+              <dt>Contact person:</dt>
+              <dd><code class="placeholder-tag">[CONTACT NAME — ESKİŞEHİR]</code></dd>
+            </div>
+            <div>
+              <dt>Email:</dt>
+              <dd><a href="mailto:[CITY EMAIL]"><code class="placeholder-tag">[CITY EMAIL]</code></a></dd>
+            </div>
+            <div>
+              <dt>Address:</dt>
+              <dd><code class="placeholder-tag">[POSTAL ADDRESS — MODERN GELİŞİM DERNEĞİ]</code></dd>
+            </div>
+            <div>
+              <dt>Phone:</dt>
+              <dd><code class="placeholder-tag">[PHONE — ESKİŞEHİR]</code></dd>
+            </div>
+          </dl>
+          <a href="mailto:[CITY EMAIL]?subject=CREATE%20%26%20CARE%20Enquiry%20(Eskisehir)" class="btn">
+            Email Eskişehir team
+          </a>
+        </Postcard>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support Services Notice -->
+  <section class="section-band band-butter" aria-labelledby="support-heading">
+    <div class="container">
+      <div class="support-card">
+        <Stamp text="IMPORTANT NOTICE · NON-CLINICAL PROJECT" variant="brick" rotate={-1} />
+        <h2 id="support-heading">Need emotional or mental-health support right now?</h2>
+        <p class="lead">
+          CREATE &amp; CARE is a learning project, not a medical or therapy service. If you need support now, contact <code class="placeholder-tag">[LOCAL SUPPORT SERVICE AND NUMBER PER COUNTRY]</code>.
+        </p>
+
+        <div class="grid-3 support-countries">
+          <div class="country-support-box">
+            <h3>Germany</h3>
+            <p><code class="placeholder-tag">[LOCAL SUPPORT SERVICE AND NUMBER — GERMANY]</code></p>
+          </div>
+          <div class="country-support-box">
+            <h3>Portugal</h3>
+            <p><code class="placeholder-tag">[LOCAL SUPPORT SERVICE AND NUMBER — PORTUGAL]</code></p>
+          </div>
+          <div class="country-support-box">
+            <h3>Türkiye</h3>
+            <p><code class="placeholder-tag">[LOCAL SUPPORT SERVICE AND NUMBER — TÜRKİYE]</code></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-list {
+    margin: 0 0 1.25rem 0;
+    font-size: 0.94rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact-list div {
+    border-bottom: 1px dashed var(--plum);
+    padding-bottom: 0.35rem;
+  }
+
+  .contact-list dt {
+    font-weight: 700;
+  }
+
+  .contact-list dd {
+    margin: 0.15rem 0 0 0;
+  }
+
+  .support-card {
+    background-color: var(--paper);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    padding: clamp(1.5rem, 3.5vw, 2.5rem);
+    box-shadow: var(--shadow-hard);
+  }
+
+  .support-card h2 {
+    margin-top: 0.75rem;
+  }
+
+  .support-countries {
+    margin-top: 1.5rem;
+  }
+
+  .country-support-box {
+    background-color: var(--butter);
+    border: 2px solid var(--plum);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.25rem;
+  }
+
+  .country-support-box h3 {
+    margin-bottom: 0.4rem;
+  }
+
+  .country-support-box p {
+    margin: 0;
+  }
+</style>

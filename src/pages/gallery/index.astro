@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+import Postcard from '../../components/Postcard.astro';
+import Arches from '../../components/Arches.astro';
+
+// Replace with actual Artsteps exhibition embed URL once published (Nov 2027 – Jan 2028)
+const artstepsEmbedUrl = 'https://www.artsteps.com/embed/[ARTSTEPS_EXHIBITION_ID]/853/480';
+const artstepsDirectUrl = 'https://www.artsteps.com/view/[ARTSTEPS_EXHIBITION_ID]';
+---
+
+<BaseLayout
+  title="VR Gallery – 3D Community Exhibition"
+  description="Explore the CREATE & CARE 3D Virtual Reality exhibition on Artsteps showcasing drawings, stories, drama and music reflections from adult learners in Bonn, Madeira and Eskişehir."
+>
+  <section class="page-hero band-sky">
+    <div class="container page-hero-inner">
+      <Stamp text="OPENING NOV 2027 – JAN 2028" variant="brick" rotate={-1.5} />
+      <h1>The VR gallery</h1>
+      <p class="lead">
+        A virtual three-room exhibition bringing together creative works by adults from Bonn, Funchal and Eskişehir alongside our three-week physical exhibitions.
+      </p>
+    </div>
+  </section>
+
+  <!-- Click-to-load Artsteps embed -->
+  <section class="section-band band-plum" aria-labelledby="embed-heading">
+    <div class="container">
+      <div class="vr-stage-header">
+        <h2 id="embed-heading">Interactive 3D exhibition</h2>
+        <p>
+          To protect your privacy and save mobile data, we do not load third-party scripts automatically. Click the button below when you want to load the interactive 3D space from Artsteps.
+        </p>
+      </div>
+
+      <div class="vr-stage" id="vr-stage" data-embed-url={artstepsEmbedUrl}>
+        <div class="vr-poster" id="vr-poster">
+          <div class="vr-poster-art" aria-hidden="true">
+            <Arches variant="banner" />
+          </div>
+          <div class="vr-poster-content">
+            <Stamp text="PRIVACY-FIRST EMBED · NO COOKIES UNTIL CLICKED" variant="dashed" fill="butter" rotate={-1} />
+            <h3>CREATE &amp; CARE Virtual Exhibition</h3>
+            <p>
+              Scheduled opening: <strong>November 2027 – January 2028</strong> · Artsteps embed ID: <code class="placeholder-tag">[ARTSTEPS_EXHIBITION_ID]</code>
+            </p>
+            <div class="vr-poster-actions">
+              <button
+                type="button"
+                class="btn btn-butter"
+                id="load-vr-btn"
+              >
+                Load the 3D gallery (opens content from Artsteps)
+              </button>
+              <a
+                href={artstepsDirectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-paper"
+              >
+                Open in a new tab ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to visit guide -->
+  <section class="section-band band-paper" aria-labelledby="how-to-visit-heading">
+    <div class="container">
+      <div class="guide-header">
+        <Stamp text="VISITOR GUIDE" variant="dashed" fill="mint" rotate={1.5} />
+        <h2 id="how-to-visit-heading">How to visit the exhibition</h2>
+        <p class="lead">
+          You can walk through the gallery on any computer, tablet or phone—and every artwork has a full-text description for screen readers.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <Postcard stamp="STEP 01 · CONTROLS" rotate={-0.8} bg="butter">
+          <h3>On a computer or laptop</h3>
+          <p>
+            Click <strong>Load the 3D gallery</strong> above. Use your <strong>arrow keys</strong> (or click on the floor footsteps) to walk from room to room. Click any framed postcard or artwork on the wall to read the learner’s story.
+          </p>
+        </Postcard>
+
+        <Postcard stamp="STEP 02 · PHONE & TABLET" rotate={0.8} bg="rose">
+          <h3>On a mobile phone</h3>
+          <p>
+            For the best view on a small screen, use the <strong>Open in a new tab</strong> link or press the Guided Tour play button inside the viewer to glide automatically through the Bonn, Madeira and Eskişehir rooms.
+          </p>
+        </Postcard>
+
+        <Postcard stamp="STEP 03 · IN PERSON" rotate={-0.6} bg="mint">
+          <h3>Visit the physical exhibitions</h3>
+          <p>
+            Between <strong>October 2027 and January 2028</strong>, each partner city also hosts a free three-week physical exhibition at local community venues. Check the <a href="/events/">Events page</a> for opening hours.
+          </p>
+        </Postcard>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const loadBtn = document.getElementById('load-vr-btn');
+  const stage = document.getElementById('vr-stage');
+  const poster = document.getElementById('vr-poster');
+
+  if (loadBtn && stage && poster) {
+    loadBtn.addEventListener('click', () => {
+      const embedUrl = stage.getAttribute('data-embed-url') || '';
+      const iframe = document.createElement('iframe');
+      iframe.src = embedUrl;
+      iframe.title = 'CREATE & CARE 3D Virtual Gallery on Artsteps';
+      iframe.width = '100%';
+      iframe.height = '540';
+      iframe.setAttribute('allowfullscreen', 'true');
+      iframe.setAttribute('loading', 'lazy');
+      iframe.style.border = '0';
+      iframe.style.display = 'block';
+
+      poster.remove();
+      stage.appendChild(iframe);
+    });
+  }
+</script>
+
+<style>
+  .vr-stage-header {
+    max-width: 740px;
+    margin-bottom: 1.75rem;
+  }
+
+  .vr-stage {
+    background-color: var(--paper);
+    color: var(--plum);
+    border: 3px solid var(--butter);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 var(--butter);
+  }
+
+  .vr-poster {
+    padding: clamp(1.75rem, 4vw, 3rem);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .vr-poster-art {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .vr-poster-content {
+    max-width: 640px;
+  }
+
+  .vr-poster-content h3 {
+    margin-top: 0.85rem;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+  }
+
+  .vr-poster-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .guide-header {
+    max-width: 720px;
+    margin-bottom: 2rem;
+  }
+
+  .guide-header h2 {
+    margin-top: 0.75rem;
+  }
+</style>

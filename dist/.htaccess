@@ -1,0 +1,43 @@
+# ==============================================================================
+# CREATE & CARE (createandcare.eu) — Apache Configuration for HostGator cPanel
+# ==============================================================================
+
+# 1. Custom 404 Error Document
+ErrorDocument 404 /404.html
+
+# 2. Force HTTPS and canonical bare domain (redirect www.createandcare.eu -> createandcare.eu)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirect www to bare domain over HTTPS
+  RewriteCond %{HTTP_HOST} ^www\.createandcare\.eu$ [NC]
+  RewriteRule ^(.*)$ https://createandcare.eu/$1 [R=301,L]
+
+  # Redirect HTTP to HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
+
+# 3. Compression (Gzip / Deflate)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml application/xml text/xml font/woff2
+</IfModule>
+
+# 4. Cache Control Headers
+<IfModule mod_headers.c>
+  # Long cache (1 year, immutable) for hashed Astro assets and self-hosted fonts
+  <FilesMatch "\.(woff2|webp|avif|png|jpg|jpeg|svg|css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Short cache (5 minutes) for HTML, XML, and text files so news posts appear quickly
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
+
+  # 5. Security Headers
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src https://www.artsteps.com https://artsteps.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;"
+</IfModule>

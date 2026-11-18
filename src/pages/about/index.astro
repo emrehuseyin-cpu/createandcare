@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+import Postcard from '../../components/Postcard.astro';
+import Arches from '../../components/Arches.astro';
+---
+
+<BaseLayout
+  title="About CREATE & CARE"
+  description="Learn about the aims, creative non-clinical approach, target groups and three NGO partners behind CREATE & CARE (Erasmus+ KA210-ADU)."
+>
+  <section class="page-hero band-rose">
+    <div class="container page-hero-inner">
+      <Stamp text="ERASMUS+ KA210-ADU · 2026–2028" variant="brick" rotate={-1.5} />
+      <h1>About CREATE &amp; CARE</h1>
+      <p class="lead">
+        Creative Adult Education for Mental Well-Being and Inclusion — an 18-month small-scale partnership connecting adult educators and communities in Germany, Portugal and Türkiye.
+      </p>
+    </div>
+  </section>
+
+  <!-- Project Aims -->
+  <section class="section-band band-paper" aria-labelledby="aims-heading">
+    <div class="container grid-2">
+      <div>
+        <Stamp text="OUR AIMS" variant="dashed" fill="butter" rotate={-1} />
+        <h2 id="aims-heading">Why we came together</h2>
+        <p>
+          Across Europe, many adults over 25 experience loneliness, social isolation or everyday emotional strain—whether after moving country, caring for family, facing unemployment or living in remote or rapidly changing neighbourhoods.
+        </p>
+        <p>
+          <strong>CREATE &amp; CARE</strong> equips adult educators with gentle, practical creative methods so community centres and local NGOs can offer welcoming spaces where adults express themselves, build peer networks and take part in local cultural life.
+        </p>
+      </div>
+
+      <div class="aims-box">
+        <h3>What we build together (Sep 2026 – Feb 2028)</h3>
+        <ul>
+          <li><strong>Train 12 adult educators</strong> (4 from each partner country) during an intensive training week in Madeira.</li>
+          <li><strong>Facilitate local workshops for 60 adults 25+</strong> (20 per city, at least half with fewer opportunities) in Bonn, Funchal and Eskişehir.</li>
+          <li><strong>Publish an open-access Methods Manual</strong> in four chapters (Drawing, Storytelling, Drama, Music) plus ready-to-run session templates.</li>
+          <li><strong>Run four awareness campaigns</strong> and host <strong>three local exhibitions + one permanent VR gallery</strong> to destigmatise conversations around mental well-being.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Art & The Non-Clinical Promise -->
+  <section class="section-band band-lilac" aria-labelledby="promise-nonclinical">
+    <div class="container grid-2">
+      <div>
+        <Stamp text="WHY ART?" variant="brick" rotate={1.5} />
+        <h2>Four creative doors into conversation</h2>
+        <p>
+          Sitting in a circle and being asked “How is your mental health?” stops many adults at the door. Creative activities lower the barrier:
+        </p>
+        <ul>
+          <li><strong>Drawing &amp; visual postcards:</strong> putting colours and shapes on paper when words feel stiff—especially helpful across different first languages.</li>
+          <li><strong>Storytelling:</strong> sharing everyday memories, objects and places that anchor identity and resilience.</li>
+          <li><strong>Drama &amp; role-play:</strong> stepping into playful group exercises that build empathy and confidence.</li>
+          <li><strong>Music &amp; rhythm:</strong> listening and creating shared rhythms that connect a room without needing musical training.</li>
+        </ul>
+      </div>
+
+      <div class="nonclinical-card">
+        <Stamp text="THE NON-CLINICAL PROMISE" variant="dashed" fill="butter" rotate={-1.5} />
+        <h2 id="promise-nonclinical">Learning and community, not therapy</h2>
+        <p>
+          <strong>CREATE &amp; CARE is an adult education project, not medical treatment, psychotherapy or crisis counselling.</strong>
+        </p>
+        <p>
+          Our facilitators are trained adult educators and youth/community workers. Every workshop begins with clear, warm boundaries: participants always choose what they share, never dissect trauma, and focus on peer learning, creativity and everyday well-being.
+        </p>
+        <p class="mb-0">
+          At every local workshop and on our <a href="/contact/">Contact page</a>, we provide direct signposting to professional local mental-health and crisis support services in Germany, Portugal and Türkiye.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Target Groups -->
+  <section class="section-band band-butter" aria-labelledby="targets-heading">
+    <div class="container">
+      <div class="section-intro">
+        <Stamp text="WHO THIS IS FOR" variant="dashed" fill="paper" rotate={1} />
+        <h2 id="targets-heading">Our three target groups</h2>
+      </div>
+
+      <div class="grid-3">
+        <Postcard stamp="GROUP 01 · LEARNERS" rotate={-1}>
+          <h3>Adults aged 25+</h3>
+          <p>
+            60 direct workshop participants across Bonn, Madeira and Eskişehir. At least half are adults with fewer opportunities—including migrants and refugees, unemployed adults, family carers, older adults or people living in isolated areas. No previous art experience is needed.
+          </p>
+        </Postcard>
+
+        <Postcard stamp="GROUP 02 · EDUCATORS" rotate={1}>
+          <h3>Adult educators &amp; facilitators</h3>
+          <p>
+            12 directly trained facilitators plus community trainers, volunteers and language/integration teachers across Europe who use our free Methods Manual, session templates and campaign kits.
+          </p>
+        </Postcard>
+
+        <Postcard stamp="GROUP 03 · STAKEHOLDERS" rotate={-0.6}>
+          <h3>Local NGOs &amp; municipalities</h3>
+          <p>
+            Community centres, cultural venues, social services and municipal adult-education providers who refer learners, co-host our three-week exhibitions and attend the February 2028 multiplier conferences.
+          </p>
+        </Postcard>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="section-band band-paper" aria-labelledby="partners-heading">
+    <div class="container">
+      <div class="section-intro">
+        <Stamp text="THREE COUNTRIES · ONE TEAM" variant="brick" rotate={-1.5} />
+        <h2 id="partners-heading">The three partner organisations</h2>
+      </div>
+
+      <div class="grid-3">
+        <Postcard stamp="COORDINATOR · GERMANY" rotate={-0.8} bg="rose">
+          <div class="partner-logo-box">[LOGO] Integrational e.V.</div>
+          <h3>Integrational e.V.</h3>
+          <p class="partner-city"><strong>Bonn, Germany</strong></p>
+          <p>
+            Project coordinator responsible for overall management, quality assurance, the kick-off meeting in Germany and local workshops and exhibition activities in Bonn.
+          </p>
+          <p><code class="placeholder-tag">[PARTNER DESCRIPTION / WEBSITE — INTEGRATIONAL e.V.]</code></p>
+        </Postcard>
+
+        <Postcard stamp="PARTNER · PORTUGAL" rotate={0.9} bg="peach">
+          <div class="partner-logo-box">[LOGO] Associação Ramifica</div>
+          <h3>Associação Ramifica</h3>
+          <p class="partner-city"><strong>Funchal, Madeira, Portugal</strong></p>
+          <p>
+            Hosts the November 2026 international training course for 12 educators in Madeira, leads local creative workshops and exhibitions in Funchal, and co-authors the Methods Manual.
+          </p>
+          <p><code class="placeholder-tag">[PARTNER DESCRIPTION / WEBSITE — ASSOCIAÇÃO RAMIFICA]</code></p>
+        </Postcard>
+
+        <Postcard stamp="PARTNER · TÜRKİYE" rotate={-1} bg="mint">
+          <div class="partner-logo-box">[LOGO] Modern Gelişim Derneği</div>
+          <h3>Modern Gelişim Derneği</h3>
+          <p class="partner-city"><strong>Eskişehir, Türkiye</strong></p>
+          <p>
+            Leads local workshops and community exhibition activities in Eskişehir, co-develops the awareness campaigns and hosts the final transnational evaluation meeting in February 2028.
+          </p>
+          <p><code class="placeholder-tag">[PARTNER DESCRIPTION / WEBSITE — MODERN GELİŞİM DERNEĞİ]</code></p>
+        </Postcard>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-intro {
+    max-width: 720px;
+    margin-bottom: 2rem;
+  }
+
+  .section-intro h2 {
+    margin-top: 0.75rem;
+  }
+
+  .aims-box,
+  .nonclinical-card {
+    background-color: var(--paper);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-hard);
+  }
+
+  .nonclinical-card h2 {
+    margin-top: 0.75rem;
+  }
+
+  .aims-box ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .aims-box li {
+    margin-bottom: 0.65rem;
+  }
+
+  .partner-logo-box {
+    display: inline-block;
+    padding: 0.5rem 0.85rem;
+    border: 2px dashed var(--plum);
+    border-radius: var(--radius-sm);
+    background-color: var(--paper);
+    font-weight: 800;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .partner-city {
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .mb-0 {
+    margin-bottom: 0;
+  }
+</style>

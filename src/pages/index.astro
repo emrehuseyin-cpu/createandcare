@@ -1,0 +1,1027 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Arches from '../components/Arches.astro';
+import Stamp from '../components/Stamp.astro';
+import Postcard from '../components/Postcard.astro';
+import { getComputedRoadTrip } from '../data/roadtrip';
+
+const roadTripStops = getComputedRoadTrip(new Date());
+
+const allNews = (await getCollection('news')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const latestNews = allNews.slice(0, 2);
+
+const allEvents = (await getCollection('events')).sort(
+  (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
+);
+const nextEvent = allEvents[0];
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title="CREATE & CARE – Creative Adult Education for Mental Well-Being and Inclusion"
+  description="Draw it. Say it. Share it. An Erasmus+ KA210-ADU partnership using drawing, stories, drama and music to help adults 25+ talk about how they feel, find their people and take part in local life in Bonn, Madeira and Eskişehir."
+>
+  <!-- 3. Hero Section -->
+  <section class="section-band band-paper hero-section">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="hero-stamps">
+          <Stamp text="FREE · FOR ADULTS 25+" variant="brick" rotate={-2} />
+          <Stamp text="NO ART SKILLS NEEDED" variant="dashed" fill="butter" rotate={2.5} />
+        </div>
+        <h1>Draw it. Say it. Share it.</h1>
+        <p class="lead">
+          CREATE &amp; CARE uses drawing, stories, drama and music to help adults talk about how they feel, find their people and take part in local life — in <strong>Bonn</strong>, <strong>Madeira</strong> and <strong>Eskişehir</strong>.
+        </p>
+        <div class="hero-actions">
+          <a href="#cities" class="btn">Pick your city</a>
+          <a href="/activities/" class="btn btn-butter">See the 18-month road trip</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <Arches variant="hero" photoCaption="Consented workshop photo slot" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. "Who are you? We'll show you your part." -->
+  <section class="section-band band-butter" id="who-are-you" aria-labelledby="who-heading">
+    <div class="container">
+      <div class="section-header">
+        <Stamp text="FIND YOUR PLACE" variant="dashed" fill="paper" rotate={-1.5} />
+        <h2 id="who-heading">Who are you? We’ll show you your part.</h2>
+        <p class="lead">
+          Choose the role that fits you best to see your next three dates and how to take part.
+        </p>
+      </div>
+
+      <div class="audience-toggles" role="group" aria-label="Choose your audience role">
+        <button
+          type="button"
+          class="audience-btn"
+          data-target="panel-learner"
+          aria-pressed="true"
+        >
+          <span class="audience-btn-title">I want to join in</span>
+          <span class="audience-btn-sub">Adult 25+</span>
+        </button>
+
+        <button
+          type="button"
+          class="audience-btn"
+          data-target="panel-educator"
+          aria-pressed="false"
+        >
+          <span class="audience-btn-title">I teach or facilitate</span>
+          <span class="audience-btn-sub">Educator, trainer, volunteer</span>
+        </button>
+
+        <button
+          type="button"
+          class="audience-btn"
+          data-target="panel-local"
+          aria-pressed="false"
+        >
+          <span class="audience-btn-title">I work locally</span>
+          <span class="audience-btn-sub">NGO, municipality, service</span>
+        </button>
+      </div>
+
+      <div class="audience-panels">
+        <!-- Panel 1: Learner -->
+        <div class="audience-panel" id="panel-learner" data-role-panel>
+          <div class="panel-badge">For adults 25+</div>
+          <h3>Come for a cup of tea, leave with a story and new faces</h3>
+          <p>
+            You do not need to be “good at art”. Our local workshops are gentle, welcoming days where we use pencils, postcards, voice and simple movement to reflect on everyday life and connect with neighbours.
+          </p>
+          <h4 class="dates-heading">Your next three dates:</h4>
+          <ul class="dates-list">
+            <li><strong>January 2027:</strong> One-day workshop near you (Bonn, Madeira or Eskişehir)</li>
+            <li><strong>10 February 2027:</strong> Online hub with all three countries</li>
+            <li><strong>Autumn 2027:</strong> Your work in a local exhibition if you want</li>
+          </ul>
+          <a href="#cities" class="btn">Pick my city</a>
+        </div>
+
+        <!-- Panel 2: Educator -->
+        <div class="audience-panel" id="panel-educator" data-role-panel>
+          <div class="panel-badge">For educators, trainers &amp; volunteers</div>
+          <h3>Ready-to-run creative methods tested in three countries</h3>
+          <p>
+            Everything we test with our 12 trained facilitators becomes open-access material: step-by-step facilitation plans, safety boundaries for non-clinical settings, and ready-to-print session templates.
+          </p>
+          <h4 class="dates-heading">Your next three dates:</h4>
+          <ul class="dates-list">
+            <li><strong>April 2027:</strong> Methods Manual, free PDF in English</li>
+            <li><strong>May–September 2027:</strong> Four campaign packs</li>
+            <li><strong>February 2028:</strong> Live method demos at the final events</li>
+          </ul>
+          <a href="/downloads/" class="btn">See the downloads</a>
+        </div>
+
+        <!-- Panel 3: Local organisation -->
+        <div class="audience-panel" id="panel-local" data-role-panel>
+          <div class="panel-badge">For NGOs, municipalities &amp; community services</div>
+          <h3>Partner with us locally to reach adults who feel isolated</h3>
+          <p>
+            Help us connect with adults aged 25+—especially newcomers, carers, unemployed adults or anyone facing social isolation—and host or visit our three-week community exhibitions.
+          </p>
+          <h4 class="dates-heading">Your next three dates:</h4>
+          <ul class="dates-list">
+            <li><strong>Now:</strong> Refer adults to the January workshops</li>
+            <li><strong>October 2027 – January 2028:</strong> Three-week exhibitions in each city</li>
+            <li><strong>February 2028:</strong> Results at the final conference</li>
+          </ul>
+          <a href="/contact/" class="btn">Talk to your local partner</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Why art? (lilac band) -->
+  <section class="section-band band-lilac" aria-labelledby="why-art-heading">
+    <div class="container">
+      <div class="why-art-intro">
+        <Stamp text="NON-CLINICAL ADULT LEARNING" variant="brick" rotate={-1.5} />
+        <h2 id="why-art-heading">Why art?</h2>
+        <p class="lead">
+          Talking straight about loneliness, stress or belonging can feel overwhelming—especially in a second language or a new stage of adulthood. Drawing a postcard, telling a story through an object, stepping into a playful role or sharing a rhythm gives people a side door into conversation.
+        </p>
+        <div class="therapy-notice">
+          <strong>This is a learning project, not therapy.</strong> Our facilitators are adult educators, not clinicians. We focus on creative expression, peer connection and active citizenship in safe community spaces.
+        </div>
+      </div>
+
+      <div class="grid-4 stats-grid">
+        <div class="stat-tile tile--rose">
+          <span class="stat-num">12</span>
+          <span class="stat-label">educators trained across Germany, Portugal and Türkiye</span>
+        </div>
+        <div class="stat-tile tile--butter">
+          <span class="stat-num">60</span>
+          <span class="stat-label">adult learners, at least half with fewer opportunities</span>
+        </div>
+        <div class="stat-tile tile--mint">
+          <span class="stat-num">3 + 1</span>
+          <span class="stat-label">3 local exhibitions and one VR gallery</span>
+        </div>
+        <div class="stat-tile tile--peach">
+          <span class="stat-num">18</span>
+          <span class="stat-label">months together, Sep 2026 – Feb 2028</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. The road trip (8 numbered stops, computed from build date) -->
+  <section class="section-band band-paper" aria-labelledby="roadtrip-heading">
+    <div class="container">
+      <div class="section-header">
+        <Stamp text="SEP 2026 – FEB 2028" variant="dashed" fill="peach" rotate={1.5} />
+        <h2 id="roadtrip-heading">The road trip</h2>
+        <p class="lead">
+          Eight stops across 18 months. Past stops are marked <strong>done</strong>, our current milestone is highlighted <strong>we are here</strong>, and upcoming stops await ahead.
+        </p>
+      </div>
+
+      <ol class="roadtrip-grid">
+        {roadTripStops.map((stop) => (
+          <li
+            class:list={[
+              'roadtrip-card',
+              `status--${stop.status}`,
+              stop.status === 'future' && `pastel--${stop.pastel}`,
+            ]}
+          >
+            <div class="roadtrip-top">
+              <span class="stop-number" aria-hidden="true">0{stop.number}</span>
+              {stop.status === 'done' && (
+                <span class="status-badge badge--done">Done</span>
+              )}
+              {stop.status === 'current' && (
+                <span class="status-badge badge--current">We are here</span>
+              )}
+              {stop.status === 'future' && (
+                <span class="status-badge badge--future">Upcoming</span>
+              )}
+            </div>
+            <h3 class="stop-title">{stop.title}</h3>
+            <p class="stop-date">{stop.dateLabel}</p>
+            <p class="stop-desc">{stop.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 7. Three postcards, pick yours (sky band) -->
+  <section class="section-band band-sky" id="cities" aria-labelledby="cities-heading">
+    <div class="container">
+      <div class="section-header">
+        <Stamp text="JANUARY 2027 WORKSHOPS" variant="brick" rotate={-2} />
+        <h2 id="cities-heading">Three postcards, pick yours</h2>
+        <p class="lead">
+          <strong>Planned dates. 20 places per city, free, adults 25+.</strong>
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <Postcard stamp="18 JAN 2027 · BONN" rotate={-1.2}>
+          <h3>Bonn, Germany</h3>
+          <p class="city-partner">Hosted by <strong>Integrational e.V.</strong></p>
+          <dl class="city-meta">
+            <div>
+              <dt>Planned date:</dt>
+              <dd>18 January 2027</dd>
+            </div>
+            <div>
+              <dt>Venue:</dt>
+              <dd><code class="placeholder-tag">[VENUE]</code></dd>
+            </div>
+            <div>
+              <dt>Languages:</dt>
+              <dd><code class="placeholder-tag">[LANGUAGES]</code></dd>
+            </div>
+          </dl>
+          <div class="city-action">
+            <a href="mailto:[CITY EMAIL]?subject=CREATE%20%26%20CARE%20Workshop%20in%20Bonn" class="btn">
+              Save my place in Bonn
+            </a>
+          </div>
+        </Postcard>
+
+        <Postcard stamp="19 JAN 2027 · MADEIRA" rotate={1}>
+          <h3>Madeira / Funchal, Portugal</h3>
+          <p class="city-partner">Hosted by <strong>Associação Ramifica</strong></p>
+          <dl class="city-meta">
+            <div>
+              <dt>Planned date:</dt>
+              <dd>19 January 2027</dd>
+            </div>
+            <div>
+              <dt>Venue:</dt>
+              <dd><code class="placeholder-tag">[VENUE]</code></dd>
+            </div>
+            <div>
+              <dt>Languages:</dt>
+              <dd><code class="placeholder-tag">[LANGUAGES]</code></dd>
+            </div>
+          </dl>
+          <div class="city-action">
+            <a href="mailto:[CITY EMAIL]?subject=CREATE%20%26%20CARE%20Workshop%20in%20Madeira" class="btn">
+              Save my place in Madeira
+            </a>
+          </div>
+        </Postcard>
+
+        <Postcard stamp="20 JAN 2027 · ESKİŞEHİR" rotate={-0.8}>
+          <h3>Eskişehir, Türkiye</h3>
+          <p class="city-partner">Hosted by <strong>Modern Gelişim Derneği</strong></p>
+          <dl class="city-meta">
+            <div>
+              <dt>Planned date:</dt>
+              <dd>20 January 2027</dd>
+            </div>
+            <div>
+              <dt>Venue:</dt>
+              <dd><code class="placeholder-tag">[VENUE]</code></dd>
+            </div>
+            <div>
+              <dt>Languages:</dt>
+              <dd><code class="placeholder-tag">[LANGUAGES]</code></dd>
+            </div>
+          </dl>
+          <div class="city-action">
+            <a href="mailto:[CITY EMAIL]?subject=CREATE%20%26%20CARE%20Workshop%20in%20Eskisehir" class="btn">
+              Save my place in Eskişehir
+            </a>
+          </div>
+        </Postcard>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. The shelf (Downloads preview) -->
+  <section class="section-band band-paper" aria-labelledby="shelf-heading">
+    <div class="container">
+      <div class="section-header">
+        <Stamp text="OPEN EDUCATIONAL RESOURCES" variant="dashed" fill="mint" rotate={-1.5} />
+        <h2 id="shelf-heading">The shelf</h2>
+        <p class="lead">
+          Free, practical resources for adult educators, community facilitators and local groups.
+        </p>
+      </div>
+
+      <div class="grid-3 shelf-grid">
+        <article class="book-spine spine--rose">
+          <div class="spine-top">
+            <span class="spine-vol">VOL. 01 · PDF</span>
+            <Stamp text="Coming April 2027" variant="dashed" fill="paper" rotate={1.5} />
+          </div>
+          <h3>Methods Manual</h3>
+          <p>
+            Four practical chapters covering drawing, storytelling, drama and music workshops for adult mental well-being and inclusion.
+          </p>
+          <p class="spine-meta"><strong>Format:</strong> PDF · <strong>Language:</strong> English</p>
+        </article>
+
+        <article class="book-spine spine--butter">
+          <div class="spine-top">
+            <span class="spine-vol">VOL. 02 · ZIP / PDF</span>
+            <Stamp text="Coming May–Sep 2027" variant="dashed" fill="paper" rotate={-1.5} />
+          </div>
+          <h3>Campaign packs</h3>
+          <p>
+            Four thematic awareness campaign kits with printable posters, conversation starters and social cards challenging mental-health stigma.
+          </p>
+          <p class="spine-meta"><strong>Format:</strong> PDF &amp; PNG · <strong>Languages:</strong> EN, DE, PT, TR</p>
+        </article>
+
+        <article class="book-spine spine--mint">
+          <div class="spine-top">
+            <span class="spine-vol">VOL. 03 · TEMPLATES</span>
+            <Stamp text="Coming April 2027" variant="dashed" fill="paper" rotate={1} />
+          </div>
+          <h3>Session templates</h3>
+          <p>
+            Ready-to-print facilitation checklists, non-clinical boundary agreements, reflection logs and photo consent forms.
+          </p>
+          <p class="spine-meta"><strong>Format:</strong> PDF / DOCX · <strong>Language:</strong> English</p>
+        </article>
+      </div>
+
+      <div class="section-cta">
+        <a href="/downloads/" class="btn">Visit the full downloads shelf</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. VR gallery teaser (plum band) -->
+  <section class="section-band band-plum" aria-labelledby="vr-heading">
+    <div class="container">
+      <div class="section-header">
+        <Stamp text="3D EXHIBITION ON ARTSTEPS" variant="brick" rotate={-2} />
+        <h2 id="vr-heading">Walk through the VR gallery</h2>
+        <p class="lead">
+          Opening between <strong>November 2027 and January 2028</strong> alongside our three-week physical exhibitions in Bonn, Madeira and Eskişehir.
+        </p>
+      </div>
+
+      <div class="grid-3 vr-arches-grid">
+        <div class="vr-arch-frame frame--rose">
+          <div class="vr-arch-inner">
+            <span class="vr-room-tag">ROOM 01 · BONN</span>
+            <h3>Drawing &amp; Postcards</h3>
+            <p>Placeholder frame — artworks added with learner consent in autumn 2027.</p>
+          </div>
+        </div>
+
+        <div class="vr-arch-frame frame--butter">
+          <div class="vr-arch-inner">
+            <span class="vr-room-tag">ROOM 02 · MADEIRA</span>
+            <h3>Stories &amp; Objects</h3>
+            <p>Placeholder frame — visual stories and audio reflections from Funchal.</p>
+          </div>
+        </div>
+
+        <div class="vr-arch-frame frame--mint">
+          <div class="vr-arch-inner">
+            <span class="vr-room-tag">ROOM 03 · ESKİŞEHİR</span>
+            <h3>Drama &amp; Rhythm</h3>
+            <p>Placeholder frame — collaborative canvases and community rhythms.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-cta">
+        <a href="/gallery/" class="btn btn-butter">Explore the VR gallery page</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. What we promised to change -->
+  <section class="section-band band-peach" aria-labelledby="promise-heading">
+    <div class="container">
+      <div class="section-header">
+        <Stamp text="EVALUATION & MONITORING PLAN" variant="dashed" fill="paper" rotate={1.5} />
+        <h2 id="promise-heading">What we promised to change</h2>
+        <p class="lead">
+          Four measurable targets from our project Evaluation &amp; Monitoring Plan:
+        </p>
+      </div>
+
+      <div class="grid-4 promise-grid">
+        <div class="promise-pill">
+          <span class="promise-num">+20%</span>
+          <span class="promise-text">educators’ facilitation confidence</span>
+        </div>
+        <div class="promise-pill">
+          <span class="promise-num">+20%</span>
+          <span class="promise-text">learners’ motivation to take part locally</span>
+        </div>
+        <div class="promise-pill">
+          <span class="promise-num">+30%</span>
+          <span class="promise-text">awareness of mental health and stigma</span>
+        </div>
+        <div class="promise-pill">
+          <span class="promise-num">+15%</span>
+          <span class="promise-text">sense of belonging</span>
+        </div>
+      </div>
+
+      <p class="promise-footnote">
+        Results are measured with pre/post surveys, reflection logs and focus groups across all three partner countries, and will be published openly on this website in <strong>February 2028</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- 11. News & events -->
+  <section class="section-band band-paper" aria-labelledby="news-events-heading">
+    <div class="container">
+      <div class="section-header">
+        <Stamp text="PROJECT LOGBOOK" variant="brick" rotate={-1.5} />
+        <h2 id="news-events-heading">News &amp; events</h2>
+      </div>
+
+      <div class="grid-3">
+        {latestNews.map((post, idx) => (
+          <Postcard
+            stamp={`${formatDate(post.data.date)} · ${post.data.city}`}
+            rotate={idx % 2 === 0 ? -0.8 : 0.9}
+          >
+            <span class="card-kicker">News</span>
+            <h3>
+              <a href={`/news/${post.slug}/`}>{post.data.title}</a>
+            </h3>
+            <p>{post.data.summary}</p>
+            <div class="card-footer-link">
+              <a href={`/news/${post.slug}/`} class="read-more">Read news post →</a>
+            </div>
+          </Postcard>
+        ))}
+
+        {nextEvent && (
+          <Postcard
+            stamp={`NEXT EVENT · ${formatDate(nextEvent.data.date)}`}
+            rotate={-1}
+            bg="mint"
+          >
+            <span class="card-kicker">Upcoming Event</span>
+            <h3>
+              <a href="/events/">{nextEvent.data.title}</a>
+            </h3>
+            <p>{nextEvent.data.summary}</p>
+            <div class="card-footer-link">
+              <a href="/events/" class="read-more">See all events →</a>
+            </div>
+          </Postcard>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. Contact strip + support notice -->
+  <section class="section-band band-rose" aria-labelledby="contact-strip-heading">
+    <div class="container">
+      <div class="contact-strip-box">
+        <div>
+          <h2 id="contact-strip-heading">Questions, referrals or press enquiries?</h2>
+          <p class="lead">
+            Reach our teams in Bonn, Funchal or Eskişehir directly.
+          </p>
+        </div>
+        <a href="/contact/" class="btn">Contact the three partners</a>
+      </div>
+
+      <div class="support-notice-box" role="note" aria-label="Immediate mental health support notice">
+        <p>
+          <strong>Important support notice:</strong> CREATE &amp; CARE is a learning project, not a medical or therapy service. If you need support now, contact <code class="placeholder-tag">[LOCAL SUPPORT SERVICE AND NUMBER PER COUNTRY]</code>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.audience-btn');
+  const panels = document.querySelectorAll<HTMLElement>('[data-role-panel]');
+
+  function activateRole(targetId: string) {
+    buttons.forEach((btn) => {
+      const isMatch = btn.dataset.target === targetId;
+      btn.setAttribute('aria-pressed', String(isMatch));
+    });
+    panels.forEach((panel) => {
+      panel.hidden = panel.id !== targetId;
+    });
+  }
+
+  if (buttons.length > 0 && panels.length > 0) {
+    // Initialize default selection (first button)
+    activateRole('panel-learner');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.target;
+        if (target) activateRole(target);
+      });
+    });
+  }
+</script>
+
+<style>
+  /* Hero */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 880px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .hero-stamps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.75rem;
+  }
+
+  .section-header {
+    max-width: 720px;
+    margin-bottom: 2.25rem;
+  }
+
+  .section-header h2 {
+    margin-top: 0.75rem;
+  }
+
+  /* Section 4: Who are you? */
+  .audience-toggles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.15rem;
+    margin-bottom: 1.75rem;
+  }
+
+  @media (max-width: 780px) {
+    .audience-toggles {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .audience-btn {
+    min-height: 76px;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    border: var(--border-thick);
+    background-color: var(--paper);
+    color: var(--plum);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+    font-family: var(--font-body);
+  }
+
+  .audience-btn:hover {
+    background-color: var(--peach);
+  }
+
+  .audience-btn[aria-pressed="true"] {
+    background-color: var(--plum);
+    color: var(--paper);
+    box-shadow: 6px 6px 0 var(--brick);
+  }
+
+  .audience-btn-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .audience-btn-sub {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.9;
+  }
+
+  .audience-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .audience-panel {
+    background-color: var(--paper);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    box-shadow: var(--shadow-hard);
+  }
+
+  .panel-badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.7rem;
+    background-color: var(--mint);
+    border: 2px solid var(--plum);
+    border-radius: var(--radius-pill);
+    margin-bottom: 0.75rem;
+  }
+
+  .dates-heading {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .dates-list {
+    margin: 0 0 1.5rem 0;
+    padding-left: 1.35rem;
+  }
+
+  .dates-list li {
+    margin-bottom: 0.45rem;
+    font-size: 1.05rem;
+  }
+
+  /* Section 5: Why art? */
+  .why-art-intro {
+    max-width: 780px;
+    margin-bottom: 2.25rem;
+  }
+
+  .why-art-intro h2 {
+    margin-top: 0.75rem;
+  }
+
+  .therapy-notice {
+    background-color: var(--paper);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    box-shadow: var(--shadow-hard-sm);
+    font-size: 1.05rem;
+  }
+
+  .stat-tile {
+    border: var(--border-thick);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-hard);
+  }
+
+  .tile--rose { background-color: var(--rose); }
+  .tile--butter { background-color: var(--butter); }
+  .tile--mint { background-color: var(--mint); }
+  .tile--peach { background-color: var(--peach); }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
+    line-height: 1;
+    margin-bottom: 0.65rem;
+    color: var(--plum);
+  }
+
+  .stat-label {
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  /* Section 6: Road trip */
+  .roadtrip-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.35rem;
+  }
+
+  @media (max-width: 1024px) {
+    .roadtrip-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .roadtrip-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .roadtrip-card {
+    border-radius: var(--radius-md);
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .status--done {
+    background-color: var(--paper);
+    border: 2.5px dashed var(--plum);
+  }
+
+  .status--current {
+    background-color: var(--butter);
+    border: 3px solid var(--plum);
+    box-shadow: var(--shadow-hard);
+  }
+
+  .status--future {
+    border: var(--border-thick);
+  }
+
+  .pastel--rose { background-color: var(--rose); }
+  .pastel--peach { background-color: var(--peach); }
+  .pastel--butter { background-color: var(--butter); }
+  .pastel--mint { background-color: var(--mint); }
+  .pastel--sky { background-color: var(--sky); }
+  .pastel--lilac { background-color: var(--lilac); }
+
+  .roadtrip-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .stop-number {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+  }
+
+  .status-badge {
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .badge--done {
+    border: 1.5px dashed var(--plum);
+    background-color: var(--paper);
+  }
+
+  .badge--current {
+    background-color: var(--brick);
+    color: var(--paper);
+    border: 1.5px solid var(--plum);
+  }
+
+  .badge--future {
+    background-color: var(--paper);
+    border: 1.5px solid var(--plum);
+  }
+
+  .stop-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .stop-date {
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.65rem;
+  }
+
+  .stop-desc {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  /* Section 7: Three postcards */
+  .city-partner {
+    font-size: 0.98rem;
+    margin-bottom: 1rem;
+  }
+
+  .city-meta {
+    margin: 0 0 1.35rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .city-meta div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border-bottom: 1.5px dashed var(--plum);
+    padding-bottom: 0.35rem;
+  }
+
+  .city-meta dt {
+    font-weight: 700;
+  }
+
+  .city-meta dd {
+    margin: 0;
+    text-align: right;
+  }
+
+  .city-action {
+    margin-top: auto;
+  }
+
+  /* Section 8: The shelf */
+  .book-spine {
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-hard);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .spine--rose { background-color: var(--rose); }
+  .spine--butter { background-color: var(--butter); }
+  .spine--mint { background-color: var(--mint); }
+
+  .spine-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px dashed var(--plum);
+  }
+
+  .spine-vol {
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+  }
+
+  .spine-meta {
+    font-size: 0.92rem;
+    margin-bottom: 0;
+    padding-top: 0.75rem;
+    border-top: 2px solid var(--plum);
+  }
+
+  .section-cta {
+    margin-top: 2rem;
+  }
+
+  /* Section 9: VR gallery teaser */
+  .vr-arch-frame {
+    border: 3px solid var(--paper);
+    border-radius: 180px 180px 16px 16px;
+    padding: 1.25rem;
+    color: var(--plum);
+  }
+
+  .frame--rose { background-color: var(--rose); }
+  .frame--butter { background-color: var(--butter); }
+  .frame--mint { background-color: var(--mint); }
+
+  .vr-arch-inner {
+    border: 2px dashed var(--plum);
+    border-radius: 165px 165px 10px 10px;
+    padding: 3.25rem 1.35rem 1.5rem;
+    text-align: center;
+    background-color: var(--paper);
+    height: 100%;
+  }
+
+  .vr-room-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    background-color: var(--butter);
+    border: 1.5px solid var(--plum);
+    border-radius: var(--radius-pill);
+    padding: 0.2rem 0.65rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Section 10: What we promised to change */
+  .promise-pill {
+    background-color: var(--paper);
+    border: var(--border-thick);
+    border-radius: 36px;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    box-shadow: var(--shadow-hard);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .promise-num {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 3.8vw, 3rem);
+    color: var(--brick);
+    line-height: 1.05;
+    margin-bottom: 0.45rem;
+  }
+
+  .promise-text {
+    font-weight: 800;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .promise-footnote {
+    margin-top: 1.75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    max-width: 780px;
+  }
+
+  /* Section 11: News & events */
+  .card-kicker {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+  }
+
+  .card-footer-link {
+    margin-top: auto;
+    padding-top: 0.75rem;
+  }
+
+  .read-more {
+    font-weight: 800;
+  }
+
+  /* Section 12: Contact strip */
+  .contact-strip-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .contact-strip-box h2 {
+    margin-bottom: 0.35rem;
+  }
+
+  .contact-strip-box p {
+    margin-bottom: 0;
+  }
+
+  .support-notice-box {
+    background-color: var(--paper);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    padding: 1.15rem 1.4rem;
+    box-shadow: var(--shadow-hard-sm);
+  }
+
+  .support-notice-box p {
+    margin: 0;
+    font-size: 1rem;
+  }
+</style>

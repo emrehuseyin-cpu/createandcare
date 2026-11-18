@@ -1,0 +1,202 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+import { getComputedRoadTrip } from '../../data/roadtrip';
+
+const stops = getComputedRoadTrip(new Date());
+---
+
+<BaseLayout
+  title="Activities & 18-Month Road Trip"
+  description="Explore all 8 project milestones of CREATE & CARE from September 2026 to February 2028 across Bonn, Madeira and Eskişehir."
+>
+  <section class="page-hero band-peach">
+    <div class="container page-hero-inner">
+      <Stamp text="SEPTEMBER 2026 – FEBRUARY 2028" variant="brick" rotate={-1.5} />
+      <h1>The full 18-month road trip</h1>
+      <p class="lead">
+        Eight connected milestones—from training 12 adult educators in Madeira to local creative workshops, an open Methods Manual, four awareness campaigns, three city exhibitions, a 3D VR gallery and final conferences.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-band band-paper" aria-label="All project activities">
+    <div class="container">
+      <div class="activities-stack">
+        {stops.map((stop) => (
+          <article
+            id={`stop-${stop.number}`}
+            class:list={[
+              'activity-block',
+              `activity--${stop.status}`,
+              stop.status === 'future' && `bg--${stop.pastel}`,
+            ]}
+          >
+            <div class="activity-meta">
+              <span class="activity-num">STOP 0{stop.number}</span>
+              <span class="activity-date">{stop.dateLabel}</span>
+              <span class="activity-loc">{stop.location}</span>
+              {stop.status === 'done' && (
+                <Stamp text="DONE" variant="dashed" fill="paper" rotate={-2} />
+              )}
+              {stop.status === 'current' && (
+                <Stamp text="WE ARE HERE" variant="brick" rotate={2} />
+              )}
+              {stop.status === 'future' && (
+                <Stamp text="UPCOMING" variant="dashed" fill="paper" rotate={-1} />
+              )}
+            </div>
+
+            <div class="activity-body">
+              <h2>{stop.title}</h2>
+              <p class="lead">{stop.description}</p>
+
+              {stop.number === 1 && (
+                <ul class="activity-details">
+                  <li>Host organisation: <strong>Integrational e.V.</strong> (Bonn, Germany)</li>
+                  <li>Outputs: Partnership agreement, Quality &amp; Evaluation plan, safeguarding and photo-consent workflows.</li>
+                </ul>
+              )}
+              {stop.number === 2 && (
+                <ul class="activity-details">
+                  <li>Host organisation: <strong>Associação Ramifica</strong> (Funchal, Madeira)</li>
+                  <li>Participants: 12 adult educators (4 from Germany, 4 from Portugal, 4 from Türkiye).</li>
+                  <li>Focus: Peer-testing drawing, storytelling, drama and music sessions with clear non-clinical safety boundaries.</li>
+                </ul>
+              )}
+              {stop.number === 3 && (
+                <ul class="activity-details">
+                  <li>Planned dates: <strong>Bonn (18 Jan 2027)</strong>, <strong>Madeira (19 Jan 2027)</strong>, <strong>Eskişehir (20 Jan 2027)</strong>.</li>
+                  <li>Participants: 60 adult learners aged 25+ (20 per city, at least half with fewer opportunities).</li>
+                  <li>Free of charge, no art skills required. <a href="/#cities">Reserve a place on the Home page</a>.</li>
+                </ul>
+              )}
+              {stop.number === 4 && (
+                <ul class="activity-details">
+                  <li>Date: <strong>10 February 2027</strong> (Online session across all three partner cities).</li>
+                  <li>Focus: Cross-cultural exchange where adult learners from Bonn, Madeira and Eskişehir share creative works and reflections with live translation support by facilitators.</li>
+                </ul>
+              )}
+              {stop.number === 5 && (
+                <ul class="activity-details">
+                  <li>Timeline: <strong>1 March – 22 April 2027</strong>.</li>
+                  <li>Four chapters: Drawing &amp; Visual Expression, Storytelling, Drama &amp; Movement, Music &amp; Rhythm.</li>
+                  <li>Published as a free English PDF on the <a href="/downloads/">Downloads shelf</a>.</li>
+                </ul>
+              )}
+              {stop.number === 6 && (
+                <ul class="activity-details">
+                  <li>Timeline: <strong>May – September 2027</strong>.</li>
+                  <li>Four coordinated local and online awareness campaigns reducing stigma around adult mental well-being and social isolation.</li>
+                </ul>
+              )}
+              {stop.number === 7 && (
+                <ul class="activity-details">
+                  <li>Timeline: <strong>October 2027 – January 2028</strong>.</li>
+                  <li>Three local physical exhibitions (running 3 weeks in each partner city) + launch of the <a href="/gallery/">Artsteps 3D VR gallery</a>.</li>
+                </ul>
+              )}
+              {stop.number === 8 && (
+                <ul class="activity-details">
+                  <li>Timeline: <strong>February 2028</strong>.</li>
+                  <li>Local multiplier conferences with live method demonstrations in Germany, Portugal and Türkiye, publication of pre/post evaluation results, and final project meeting hosted by <strong>Modern Gelişim Derneği</strong> in Eskişehir.</li>
+                </ul>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .activities-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .activity-block {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    border-radius: var(--radius-md);
+  }
+
+  @media (max-width: 780px) {
+    .activity-block {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  .activity--done {
+    background-color: var(--paper);
+    border: 2.5px dashed var(--plum);
+  }
+
+  .activity--current {
+    background-color: var(--butter);
+    border: 3px solid var(--plum);
+    box-shadow: var(--shadow-hard);
+  }
+
+  .activity--future {
+    border: var(--border-thick);
+    box-shadow: var(--shadow-hard-sm);
+  }
+
+  .bg--rose { background-color: var(--rose); }
+  .bg--peach { background-color: var(--peach); }
+  .bg--butter { background-color: var(--butter); }
+  .bg--mint { background-color: var(--mint); }
+  .bg--sky { background-color: var(--sky); }
+  .bg--lilac { background-color: var(--lilac); }
+
+  .activity-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    border-right: 2px dashed var(--plum);
+    padding-right: 1.25rem;
+  }
+
+  @media (max-width: 780px) {
+    .activity-meta {
+      border-right: none;
+      border-bottom: 2px dashed var(--plum);
+      padding-right: 0;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .activity-num {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+
+  .activity-date {
+    font-weight: 800;
+    font-size: 1rem;
+  }
+
+  .activity-loc {
+    font-size: 0.92rem;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+
+  .activity-details {
+    margin: 1rem 0 0 0;
+    padding-left: 1.25rem;
+  }
+
+  .activity-details li {
+    margin-bottom: 0.4rem;
+  }
+</style>

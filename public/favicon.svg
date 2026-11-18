@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="CREATE & CARE">
+  <rect width="120" height="120" rx="24" fill="#FFF8EC"/>
+  <circle cx="60" cy="60" r="48" fill="none" stroke="#F28FA6" stroke-width="10" stroke-dasharray="226.2 75.4" transform="rotate(45 60 60)"/>
+  <circle cx="60" cy="60" r="36" fill="none" stroke="#F6A35C" stroke-width="10" stroke-dasharray="169.6 56.5" transform="rotate(45 60 60)"/>
+  <circle cx="60" cy="60" r="24" fill="none" stroke="#6FC3A0" stroke-width="10" stroke-dasharray="113.1 37.7" transform="rotate(45 60 60)"/>
+  <circle cx="66" cy="60" r="9" fill="#3B2A4A"/>
+</svg>
